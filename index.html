@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sketch</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div x-data="app" class="container">
+    <h1 x-html="currentGame.totalScore"></h1>
+    <div>
+      <!-- <template x-for="throwItem in currentGame.throws" :key="throwItem.target">
+        <div class="row mb-2 g-2">
+          <div class="col-3">
+            <div class="d-flex align-items-center "
+              :class="throwItem.classText()" x-html="throwItem"></div>
+          </div>
+          <div class="col-9 d-flex gap-2">
+            <template x-for="button in throwItem.buttons" :key="button.status">
+              <div class="flex-fill">
+                <button class="btn w-100  d-flex align-items-center justify-content-center"
+                  :class="button.classText(throwItem.status)" x-text="button.text"
+                  @click="throwItem.updateStatus(button.status)"></button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template> -->
+      <div class="row g-2">
+        <template x-for="throwItem in currentGame.throws" :key="throwItem.target">
+          <div class="col-12 col-md-6 mb-2">
+            <div class="row">
+              <div class="col-3">
+                <div class="d-flex" :class="throwItem.classText()" x-html="throwItem"></div>
+              </div>
+              <div class="col-9 d-flex">
+                <template x-for="button in throwItem.buttons" :key="button.status">
+                  <div class="flex-fill">
+                    <button class="btn  d-flex align-items-center " :class="button.classText(throwItem.status)"
+                      x-text="button.text" @click="throwItem.updateStatus(button.status)"></button>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+      <button class="btn btn-success" @click="newGame()">新しいゲームを開始</button>
+      <button class="btn btn-danger" @click="clearGame()">このゲームを戻す</button>
+    </div>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
