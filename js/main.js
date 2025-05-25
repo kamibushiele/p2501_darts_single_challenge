@@ -1,4 +1,4 @@
-import Alpine from 'https://unpkg.com/alpinejs@3.x.x/dist/module.esm.js'
+import Alpine from 'https://esm.sh/alpinejs@3.14.9';
 import { GameApp } from './game.js';
 
 const appGame = {
