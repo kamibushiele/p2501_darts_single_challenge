@@ -28,8 +28,22 @@ const appGame = {
         } else {
             this.currentGame.gameFinished = false; // 現在のゲームを未完了に設定
         }
+    },
+    log(){
+        const finishedGames = this.games.filter(game => game.gameFinished);
+        let historyText = ""
+        if (finishedGames.length === 0) {
+            historyText = "履歴がありません";
+        } else {
+            historyText += finishedGames.map((game) => game.totalScore).join(", ");
+            historyText += `\n\nゲーム数: ${finishedGames.length}`;
+            historyText += `\n最高スコア: ${Math.max(...finishedGames.map(game => game.totalScore))}`;
+            historyText += `\n最低スコア: ${Math.min(...finishedGames.map(game => game.totalScore))}`;
+            const averageScore = finishedGames.reduce((acc, game) => acc + game.totalScore, 0) / finishedGames.length;
+            historyText += `\n平均スコア: ${averageScore.toFixed(2)}`;
+        }
+        return historyText;
     }
-
 }
 
 Alpine.data("app", () => appGame);

@@ -1,4 +1,12 @@
+.throw-block{
+  border-style: solid;
+  border-color: #4caf50;
+  border-width: 0 0 1px 0;
+}
+.throwed {
+  background-color: #cff1d7;
+}
 
-  .btn-custom-green {
-    background-color: #cff1d7;
-  }
+.unthrowed {
+  background-color: #f3f3f3;
+}
