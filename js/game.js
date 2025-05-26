@@ -11,12 +11,12 @@ class ThrowButton {
     classText(status) {
         if (status == this.status) {
             switch (this.status) {
-                case 0: return "btn-danger"; // ハズレ
-                case 1: return "btn-warning"; // おしい
-                case 2: return "btn-success"; // 命中
+                case 0: return "miss"; // ハズレ
+                case 1: return "near-miss"; // おしい
+                case 2: return "hit"; // 命中
             }
         } else {
-            return "btn-secondary";
+            return "unselected";
         }
     }
 }
@@ -35,7 +35,7 @@ class ThrowItem {
         }
 
         this.buttons = [];
-        for (let i = 0; i < this.pointsMap.length; i++) {
+        for (let i = this.pointsMap.length-1; i >= 0; i--) {
             this.buttons.push(new ThrowButton(i, "+" + this.pointsMap[i]));
         }
     }

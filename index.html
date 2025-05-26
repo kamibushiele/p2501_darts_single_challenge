@@ -13,28 +13,22 @@
   <div x-data="app" class="container">
     <h1 x-html="`スコア ${game.currentGame.totalScore}`" class="text-center"></h1>
     <div>
-      <div class="row">
+      <div class="row row-cols-6">
         <template x-for="throwItem in game.currentGame.throws" :key="throwItem.target">
-          <div class="col-4 text-center" :class="throwItem.classText()">
-            <div class="d-flex align-items-stretch">
-              <!-- 左：テキスト（最小幅） -->
-              <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="min-width: 2em;">
-                <div x-html="throwItem"></div>
-              </div>
-              <!-- 右：ボタン（縦に3つ、最大幅） -->
-              <div class="flex-grow-1 d-flex flex-column justify-content-between">
-                <template x-for="button in throwItem.buttons" :key="button.status">
-                  <button class="btn w-100 flex-fill" :class="button.classText(throwItem.status)" x-text="button.text"
-                    @click="throwItem.updateStatus(button.status)">
-                  </button>
-                </template>
-              </div>
-            </div>
+          <div class="col p-0" :class="throwItem.classText()">
+            <div class="text-center" x-html="throwItem"></div>
+            <template x-for="button in throwItem.buttons" :key="button.status">
+              <button class="btn w-100 flex-fill" :class="button.classText(throwItem.status)" x-text="button.text"
+                @click="throwItem.updateStatus(button.status)">
+              </button>
+            </template>
           </div>
         </template>
       </div>
-      <button class="btn btn-success" @click="game.newGame()">新しいゲームを開始</button>
-      <button class="btn btn-danger" @click="game.clearGame()">このゲームを戻す</button>
+      <div class="d-flex justify-content-center mt-3">
+          <button class="w-50 btn btn-success" @click="game.newGame()">新しいゲームを開始</button>
+          <button class="w-50 btn btn-danger" @click="game.clearGame()">このゲームを戻す</button>
+      </div>
       <div>
         <textarea class="w-100" rows="6" x-text="game.log()"></textarea>
       </div>
