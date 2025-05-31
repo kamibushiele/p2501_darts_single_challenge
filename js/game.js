@@ -113,12 +113,12 @@ export class GameApp {
         if (finishedGames.length === 0) {
             historyText = "履歴がありません";
         } else {
-            historyText += finishedGames.map((game) => game.totalScore).join(", ");
-            historyText += `\n\nゲーム数: ${finishedGames.length}`;
-            historyText += `\n最高スコア: ${Math.max(...finishedGames.map(game => game.totalScore))}`;
-            historyText += `\n最低スコア: ${Math.min(...finishedGames.map(game => game.totalScore))}`;
             const averageScore = finishedGames.reduce((acc, game) => acc + game.totalScore, 0) / finishedGames.length;
-            historyText += `\n平均スコア: ${averageScore.toFixed(2)}`;
+            historyText += finishedGames.map((game) => game.totalScore).join(", ");
+            historyText += `</br>平均スコア: ${averageScore.toFixed(2)}`;
+            // historyText += `</br>最高スコア: ${Math.max(...finishedGames.map(game => game.totalScore))}`;
+            // historyText += `</br>最低スコア: ${Math.min(...finishedGames.map(game => game.totalScore))}`;
+            historyText += `</br>ゲーム数: ${finishedGames.length}`;
         }
         return historyText;
     }
